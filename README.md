@@ -3,10 +3,7 @@
 A simple app that allows users to get random recipes by providing ingredients.
 This app uses the [Groq](https://groq.com/) AI service API on the backend side.
 
-<video width="600" controls>
-  <source src="doc/app.mov" type="video/quicktime">
-  Your browser does not support the video tag.
-</video>
+<img src="doc/app.png" alt="Swagger API Documentation" width="600"/>
 
 ## Introduction
 
