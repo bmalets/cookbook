@@ -3,6 +3,13 @@
 A simple app that allows users to get random recipes by providing ingredients.
 This app uses the [Groq](https://groq.com/) AI service API on the backend side.
 
+### Table of Contents
+- [Introduction](#introduction)
+- [Implementation Details](#implementation-details)
+  - [API Endpoints and Documentation](#api-endpoints-and-documentation)
+  - [Authentication](#authentication)
+  - [Timeline Diagram](#timeline-diagram-error-and-success-scenarios)
+
 <img src="doc/app.png" alt="Swagger API Documentation" width="600"/>
 
 ## Introduction
@@ -22,7 +29,7 @@ This means the frontend client has to wait for the results and check the status.
 - Inform frontend about results via WebSockets
 - Frontend polls backend to check the recipe search status and fetches the result once it's ready
 
-### API endpoints
+### API Endpoints and Documentation
 
 I chose the second option, so there are 3 main endpoints on the backend side:
 - Create recipe search entity
@@ -41,3 +48,7 @@ Although the application doesn't require user authentication at the moment, API 
 - Doorkeeper is a robust solution that supports various OAuth2 flows and can be extended with additional features
 
 P.S. API error handling needs to be improved in the future
+
+### Timeline Diagram (error and success scenarios)
+
+<img src="doc/cookbook.svg" alt="success_flow"/>
