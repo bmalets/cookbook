@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.groq.com/openai/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"llama3-70b-8192","messages":[{"role":"user","content":"You
+        are an expert chef. Analyze this text and respond with ONLY \"YES\" if it''s
+        a legitimate recipe, or \"NO\" if it''s not:\n\nHere''s a delicious recipe
+        using your ingredients:\n\nApple and Avocado Salad\n\nIngredients:\n- 2 sweet
+        apples, diced\n- 2 ripe avocados, cubed\n- 1 tablespoon lemon juice\n- 2 tablespoons
+        olive oil\n- Salt and pepper to taste\n\nInstructions:\n1. Combine diced apples
+        and cubed avocados in a bowl\n2. Drizzle with lemon juice and olive oil\n3.
+        Season with salt and pepper\n4. Toss gently and serve immediately\n"}],"max_tokens":1024,"temperature":0}'
+    headers:
+      Authorization:
+      - Bearer __GROQ_API_KEY__
+      User-Agent:
+      - groq-ruby/0.3.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Date:
+      - Mon, 27 Jan 2025 10:01:15 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9087e67e8c910258-WAW
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Vary:
+      - Origin, Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Groq-Region:
+      - us-west-1
+      X-Ratelimit-Limit-Requests:
+      - '14400'
+      X-Ratelimit-Limit-Tokens:
+      - '6000'
+      X-Ratelimit-Remaining-Requests:
+      - '14399'
+      X-Ratelimit-Remaining-Tokens:
+      - '5866'
+      X-Ratelimit-Reset-Requests:
+      - 6s
+      X-Ratelimit-Reset-Tokens:
+      - 1.34s
+      X-Request-Id:
+      - req_01jjkkajvwf7zb2vmjpmfq3s9r
+      Set-Cookie:
+      - __cf_bm=nOhynNL8ioOaeG4PnRjPDq9VbTdorx7Xd6j8MXR144I-1737972075-1.0.1.1-wd2B1jq_VNtMZezSRNIunYCJMDKoAchO0nA2Ox_Is2ywhs81uEuhBixaDwxrhDQrsVzOjFeblZlUbvYMqkErdA;
+        path=/; expires=Mon, 27-Jan-25 10:31:15 GMT; domain=.groq.com; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+  recorded_at: Mon, 27 Jan 2025 10:01:15 GMT
+recorded_with: VCR 6.3.1

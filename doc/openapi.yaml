@@ -1,0 +1,242 @@
+openapi: 3.0.3
+info:
+  title: Cookbook API
+  description: API for recipe search and recommendations based on ingredients
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /api/oauth/token
+          scopes:
+            read: Read access to protected resources
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        code:
+          type: string
+          description: Error code
+
+    RecipeSearchCreate:
+      type: object
+      properties:
+        recipe_search:
+          type: object
+          required:
+            - ingredients
+          properties:
+            ingredients:
+              type: array
+              items:
+                type: string
+              description: List of ingredients
+              example: ["tomato", "cheese", "pasta"]
+
+    RecipeSearchStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [pending_search, searching, search_error, pending_confirmation, confirmation, confirmed, confirmation_failed, confirmation_error]
+          description: Current status of the recipe search
+          example: "confirmed"
+
+    RecipeSearchAnswer:
+      type: object
+      properties:
+        answer:
+          type: string
+          description: Generated recipe recommendation
+          example: "Here's a delicious pasta recipe using your ingredients..."
+
+security:
+  - oauth2: [read]
+
+paths:
+  /api/v1/recipe_searches:
+    post:
+      summary: Create a new recipe search
+      description: Initiates a new recipe search based on provided ingredients
+      tags:
+        - Recipe Searches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeSearchCreate'
+      responses:
+        '201':
+          description: Recipe search created successfully
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized - invalid or missing access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/v1/recipe_searches/{id}/status:
+    get:
+      summary: Get recipe search status
+      description: Retrieves the current status of a recipe search
+      tags:
+        - Recipe Searches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeSearchStatus'
+        '404':
+          description: Recipe search not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '502':
+          description: Service unavailable - recipe search failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/v1/recipe_searches/{id}/answer:
+    get:
+      summary: Get recipe search answer
+      description: Retrieves the generated recipe recommendation
+      tags:
+        - Recipe Searches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Answer retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeSearchAnswer'
+        '404':
+          description: Recipe search not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '502':
+          description: Service unavailable - recipe search failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/oauth/token:
+    post:
+      summary: Create access token
+      description: Create a new access token using client credentials
+      tags:
+        - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - client_id
+                - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum: [client_credentials]
+                  description: Must be 'client_credentials'
+                client_id:
+                  type: string
+                  description: OAuth client ID
+                client_secret:
+                  type: string
+                  description: OAuth client secret
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: The access token
+                  token_type:
+                    type: string
+                    description: Type of token (usually 'Bearer')
+                  expires_in:
+                    type: integer
+                    description: Token expiration time in seconds
+                  created_at:
+                    type: integer
+                    description: Token creation timestamp
+        '401':
+          description: Invalid client credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/oauth/revoke:
+    post:
+      summary: Revoke access token
+      description: Revoke an existing access token
+      tags:
+        - OAuth
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - token
+              properties:
+                token:
+                  type: string
+                  description: The access token to revoke
+      responses:
+        '200':
+          description: Token revoked successfully
+        '404':
+          description: Token not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

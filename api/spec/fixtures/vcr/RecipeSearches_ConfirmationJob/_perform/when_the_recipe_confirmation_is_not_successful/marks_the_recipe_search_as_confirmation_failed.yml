@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.groq.com/openai/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"llama3-70b-8192","messages":[{"role":"user","content":"You
+        are an expert chef. Analyze this text and respond with ONLY \"YES\" if it''s
+        a legitimate recipe, or \"NO\" if it''s not:\n\nIt is not recipe.\n"}],"max_tokens":1024,"temperature":0}'
+    headers:
+      Authorization:
+      - Bearer __GROQ_API_KEY__
+      User-Agent:
+      - groq-ruby/0.3.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 27 Jan 2025 09:56:46 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 9087dfed38b13bc9-WAW
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Vary:
+      - Origin, Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Groq-Region:
+      - us-west-1
+      X-Ratelimit-Limit-Requests:
+      - '14400'
+      X-Ratelimit-Limit-Tokens:
+      - '6000'
+      X-Ratelimit-Remaining-Requests:
+      - '14399'
+      X-Ratelimit-Remaining-Tokens:
+      - '5961'
+      X-Ratelimit-Reset-Requests:
+      - 6s
+      X-Ratelimit-Reset-Tokens:
+      - 390ms
+      X-Request-Id:
+      - req_01jjkk2c63f6q828e3wtcfme93
+      Set-Cookie:
+      - __cf_bm=IW9Pqc3LaVTZkdDDKtROjJV6gGUwUfyVGrLDhhZDMVw-1737971806-1.0.1.1-Dglg7NPJjHdpWCrLqOWQawc0kXIbGhsoq6hck6RRMNy4oT4HYNN6n4PtXxrKk50T7ft6ioMS6D1h4yKMPkNXdQ;
+        path=/; expires=Mon, 27-Jan-25 10:26:46 GMT; domain=.groq.com; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"chatcmpl-4b12c154-a11b-4cde-bed7-c17fde12886d","object":"chat.completion","created":1737971806,"model":"llama3-70b-8192","choices":[{"index":0,"message":{"role":"assistant","content":"NO"},"logprobs":null,"finish_reason":"stop"}],"usage":{"queue_time":0.154680653,"prompt_tokens":48,"prompt_time":0.005479236,"completion_tokens":2,"completion_time":0.005826211,"total_tokens":50,"total_time":0.011305447},"system_fingerprint":"fp_2f30b0b571","x_groq":{"id":"req_01jjkk2c63f6q828e3wtcfme93"}}
+
+        '
+  recorded_at: Mon, 27 Jan 2025 09:56:46 GMT
+recorded_with: VCR 6.3.1

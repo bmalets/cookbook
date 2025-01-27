@@ -1,0 +1,4 @@
+remove_inactive_recipe_searches:
+  cron: '0 1 * * * America/New_York'
+  class: 'System::RemoveInactiveSearchesJob'
+  queue: critical

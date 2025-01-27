@@ -1,0 +1,81 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.groq.com/openai/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"llama3-70b-8192","messages":[{"role":"user","content":"You
+        are an expert chef. Given these ingredients: apple, avocado,\nidentify and
+        describe a real, traditional recipe that uses these ingredients.\nIf there
+        are multiple possibilities, choose the most well-known one.\n\nPlease provide:\n1.
+        The authentic name of the recipe and its origin/cuisine\n2. The complete list
+        of ingredients with specific measurements\n3. Traditional cooking instructions
+        with cooking times\n\nWrite your response in natural language, explaining
+        this classic recipe as a chef would.\nIf any essential traditional ingredients
+        are missing from the provided list, mention them but focus on using what''s
+        available.\n"}],"max_tokens":1024,"temperature":0.7}'
+    headers:
+      Authorization:
+      - Bearer __GROQ_API_KEY__
+      User-Agent:
+      - groq-ruby/0.3.2
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 27 Jan 2025 05:44:55 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 90866efb4f00ecb4-WAW
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - private, max-age=0, no-store, no-cache, must-revalidate
+      Vary:
+      - Origin, Accept-Encoding
+      Via:
+      - 1.1 google
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      X-Groq-Region:
+      - us-west-1
+      X-Ratelimit-Limit-Requests:
+      - '14400'
+      X-Ratelimit-Limit-Tokens:
+      - '6000'
+      X-Ratelimit-Remaining-Requests:
+      - '14398'
+      X-Ratelimit-Remaining-Tokens:
+      - '5309'
+      X-Ratelimit-Reset-Requests:
+      - 10.313999999s
+      X-Ratelimit-Reset-Tokens:
+      - 6.906999999s
+      X-Request-Id:
+      - req_01jjk4n6b9fe7v6sj2nrrzzhwd
+      Set-Cookie:
+      - __cf_bm=2qQJf3V52D45mQu..0VxQbVRvQ1LHrjL0Rcv7tYw8nQ-1737956695-1.0.1.1-GKC18br15BFw.FgCaOjtZhMU156k3EPR2UURF_vcQO5PU.WoAncRGlIhqHpyrNVqp7ABoMsdsOFIyPs0r_SURg;
+        path=/; expires=Mon, 27-Jan-25 06:14:55 GMT; domain=.groq.com; HttpOnly; Secure;
+        SameSite=None
+      Server:
+      - cloudflare
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6ImNoYXRjbXBsLWJjYWEzYTc4LTFkY2ItNGNmZS05ZTJmLTE0ZWQ3ZWM5NWNiMyIsIm9iamVjdCI6ImNoYXQuY29tcGxldGlvbiIsImNyZWF0ZWQiOjE3Mzc5NTY2OTQsIm1vZGVsIjoibGxhbWEzLTcwYi04MTkyIiwiY2hvaWNlcyI6W3siaW5kZXgiOjAsIm1lc3NhZ2UiOnsicm9sZSI6ImFzc2lzdGFudCIsImNvbnRlbnQiOiJXaGF0IGEgZmFzY2luYXRpbmcgY29tYmluYXRpb24hIFdpdGggYXBwbGVzIGFuZCBhdm9jYWRvcywgSSBjYW4gdGhpbmsgb2YgYSBkZWxpZ2h0ZnVsIHJlY2lwZSB0aGF0J3MgYm90aCByZWZyZXNoaW5nIGFuZCBmbGF2b3JmdWwuIExldCBtZSBpbnRyb2R1Y2UgeW91IHRvIGEgdHJhZGl0aW9uYWwgTWV4aWNhbiByZWNpcGUgdGhhdCdzIHBlcmZlY3QgZm9yIHdhcm0gd2VhdGhlcjogRW5zYWxhZGEgZGUgTWFuemFuYSB5IEFndWFjYXRlLCBvciBBcHBsZSBhbmQgQXZvY2FkbyBTYWxhZC5cblxuKipPcmlnaW4vQ3Vpc2luZToqKiBNZXhpY29cblxuKipBdXRoZW50aWMgUmVjaXBlOioqXG5cblRoaXMgc2FsYWQgaXMgYSBzdGFwbGUgaW4gbWFueSBNZXhpY2FuIGhvdXNlaG9sZHMsIHBhcnRpY3VsYXJseSBkdXJpbmcgdGhlIHN1bW1lciBtb250aHMgd2hlbiBmcmVzaCBhcHBsZXMgYW5kIGF2b2NhZG9zIGFyZSBpbiBzZWFzb24uIEl0J3MgYSBsaWdodCwgaGVhbHRoeSwgYW5kIGluY3JlZGlibHkgdGFzdHkgc2lkZSBkaXNoIHRoYXQgcGFpcnMgYmVhdXRpZnVsbHkgd2l0aCBncmlsbGVkIG1lYXRzLCBzZWFmb29kLCBvciBhcyBhIHN0YW5kYWxvbmUgc25hY2suXG5cbioqSW5ncmVkaWVudHM6KipcblxuKiAyIHJpcGUgYXZvY2Fkb3MsIGRpY2VkXG4qIDEgbGFyZ2UgYXBwbGUsIGRpY2VkIChHcmFubnkgU21pdGggb3IgYSB0YXJ0IHZhcmlldHkgd29ya3Mgd2VsbClcbiogMS8yIHJlZCBvbmlvbiwgdGhpbmx5IHNsaWNlZFxuKiAxIGphbGFwZcOxbyBwZXBwZXIsIHNlZWRlZCBhbmQgZmluZWx5IGNob3BwZWRcbiogMS80IGN1cCBmcmVzaCBjaWxhbnRybywgY2hvcHBlZFxuKiAyIHRhYmxlc3Bvb25zIGZyZXNobHkgc3F1ZWV6ZWQgbGltZSBqdWljZVxuKiBTYWx0LCB0byB0YXN0ZVxuKiAxLzQgdGVhc3Bvb24gYmxhY2sgcGVwcGVyLCB0byB0YXN0ZVxuXG4qKlRyYWRpdGlvbmFsIENvb2tpbmcgSW5zdHJ1Y3Rpb25zOioqXG5cbjEuIEluIGEgbGFyZ2UgYm93bCwgY29tYmluZSB0aGUgZGljZWQgYXBwbGUgYW5kIHJlZCBvbmlvbi4gU3F1ZWV6ZSB0aGUgbGltZSBqdWljZSBvdmVyIHRoZSBhcHBsZSBtaXh0dXJlIHRvIHByZXZlbnQgYnJvd25pbmcgYW5kIGFkZCBhIGhpbnQgb2YgY2l0cnVzIGZsYXZvci5cbjIuIEluIGEgc2VwYXJhdGUgYm93bCwgZ2VudGx5IGNvbWJpbmUgdGhlIGRpY2VkIGF2b2NhZG8sIGNob3BwZWQgamFsYXBlw7FvLCBhbmQgY2lsYW50cm8uIEJlIGNhcmVmdWwgbm90IHRvIG1hc2ggdGhlIGF2b2NhZG8uXG4zLiBBZGQgdGhlIGF2b2NhZG8gbWl4dHVyZSB0byB0aGUgYXBwbGUgbWl4dHVyZSBhbmQgZ2VudGx5IGZvbGQgdW50aWwgd2VsbCBjb21iaW5lZC5cbjQuIFNlYXNvbiB3aXRoIHNhbHQgYW5kIGJsYWNrIHBlcHBlciB0byB0YXN0ZS5cbjUuIENvdmVyIHRoZSBib3dsIHdpdGggcGxhc3RpYyB3cmFwIGFuZCByZWZyaWdlcmF0ZSBmb3IgYXQgbGVhc3QgMzAgbWludXRlcyB0byBhbGxvdyB0aGUgZmxhdm9ycyB0byBtZWxkIHRvZ2V0aGVyLlxuNi4gU2VydmUgY2hpbGxlZCwgZ2FybmlzaGVkIHdpdGggYWRkaXRpb25hbCBjaWxhbnRybyBpZiBkZXNpcmVkLlxuXG4qKlRyYWRpdGlvbmFsIFRpcHM6KipcblxuKiBGb3IgYW4gYWRkZWQgY3J1bmNoLCB5b3UgY2FuIHRvYXN0IHNvbWUgcHVtcGtpbiBzZWVkcyBvciBjaG9wcGVkIHBlY2FucyBhbmQgc3ByaW5rbGUgdGhlbSBvdmVyIHRoZSBzYWxhZC5cbiogSWYgeW91IHByZWZlciBhIHNwaWN5IGtpY2ssIHlvdSBjYW4gYWRkIG1vcmUgamFsYXBlw7FvIG9yIGludHJvZHVjZSBzb21lIGRpY2VkIHNlcnJhbm8gcGVwcGVycyB0byB0aGUgbWl4LlxuKiBUaGlzIHNhbGFkIGlzIGJlc3QgY29uc3VtZWQgZnJlc2gsIGJ1dCBpdCBjYW4gYmUgc3RvcmVkIGluIHRoZSByZWZyaWdlcmF0b3IgZm9yIHVwIHRvIDIgaG91cnMgYmVmb3JlIHNlcnZpbmcuXG5cbkVuam95IHlvdXIgZGVsaWNpb3VzIGFuZCByZWZyZXNoaW5nIEVuc2FsYWRhIGRlIE1hbnphbmEgeSBBZ3VhY2F0ZSEifSwibG9ncHJvYnMiOm51bGwsImZpbmlzaF9yZWFzb24iOiJzdG9wIn1dLCJ1c2FnZSI6eyJxdWV1ZV90aW1lIjowLjAyMTIxOTU3MiwicHJvbXB0X3Rva2VucyI6MTI1LCJwcm9tcHRfdGltZSI6MC4wMDg4NDc1OTcsImNvbXBsZXRpb25fdG9rZW5zIjo0NTgsImNvbXBsZXRpb25fdGltZSI6MS4zMjYyOTIwMzUsInRvdGFsX3Rva2VucyI6NTgzLCJ0b3RhbF90aW1lIjoxLjMzNTEzOTYzMn0sInN5c3RlbV9maW5nZXJwcmludCI6ImZwXzJmMzBiMGI1NzEiLCJ4X2dyb3EiOnsiaWQiOiJyZXFfMDFqams0bjZiOWZlN3Y2c2oybnJyenpod2QifX0K
+  recorded_at: Mon, 27 Jan 2025 05:44:55 GMT
+recorded_with: VCR 6.3.1

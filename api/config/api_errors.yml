@@ -1,0 +1,28 @@
+default: &default_settings
+  unauthorized:
+    http_code: :unauthorized
+    default_message: "Oops! Your access token seems to have gone on vacation. Time to freshen up with a new login!"
+  database_connection_error:
+    http_code: :service_unavailable
+    default_message: "Database connection error occurred"
+  resource_not_found:
+    http_code: :not_found
+    default_message: "Resource not found"
+  invalid_state_transition:
+    http_code: :bad_request
+    default_message: "Transition to this state not allowed"
+  required_parameter_missing:
+    http_code: :bad_request
+    default_message: "Required parameter is missing"
+  unpermitted_parameter:
+    http_code: :unprocessable_entity
+    default_message: "Unpermitted parameter in request"
+  llm_service_unavailable:
+    http_code: :bad_gateway
+    default_message: "Sorry, we couldn't reach an external service. Please try again later."
+
+development:
+  <<: *default_settings
+
+test:
+  <<: *default_settings
